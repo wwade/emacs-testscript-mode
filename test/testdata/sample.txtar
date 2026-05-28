@@ -1,0 +1,21 @@
+[!exec:cat] stop
+
+# This is a comment
+env HOME=/tmp
+exec cat hello.txt
+stdout 'hello world'
+! stderr .
+? exec might-fail
+
+[linux] exec uname
+[!windows] skip 'not on windows'
+
+exec long-running-task &
+wait
+
+-- hello.txt --
+hello world
+-- subdir/other.go --
+package main
+
+func main() {}
